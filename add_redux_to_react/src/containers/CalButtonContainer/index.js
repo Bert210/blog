@@ -1,5 +1,8 @@
 import React from 'react';
 import CalButton from '../../components/CalButton';
+import { connect } from 'react-redux';
+
+import { buttonPushed } from './actions';
 
 class CalButtonContainer extends React.Component {
     render(){
@@ -9,6 +12,9 @@ class CalButtonContainer extends React.Component {
     }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+    buttonPushed: (value) => dispatch(buttonPushed(value)),
+})
 
 
-export default CalButtonContainer;
+export default connect(null, mapDispatchToProps)(CalButtonContainer);

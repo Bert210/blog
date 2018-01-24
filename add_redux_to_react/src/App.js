@@ -6,7 +6,7 @@ import './App.css';
 
 class App extends Component {
   render() {
-    const calButtonNodes = '789*456/123+0.-C'.split('').map(n => {
+    const calButtonNodes = '789*456/123+0.-C='.split('').map(n => {
       return <CalButtonContainer key={n} value={n} />
     })
 

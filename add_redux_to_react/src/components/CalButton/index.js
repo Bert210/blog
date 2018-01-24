@@ -1,11 +1,11 @@
 import React from 'react';
 import './CalButton.css';
 
-const CalButton = ({ value }) => {
+const CalButton = ({ value, buttonPushed }) => {
     return (
         <div 
             className="calButton"
-            onClick={() => console.log(value)}
+            onClick={() => buttonPushed(value)}
         >
             {value}
         </div>

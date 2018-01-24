@@ -1,6 +1,8 @@
 import React from 'react';
 import Display from '../../components/Display';
 
+import { connect } from 'react-redux';
+
 class DisplayContainer extends React.Component {
     render(){
         return(
@@ -9,8 +11,12 @@ class DisplayContainer extends React.Component {
     }
 }
 
-DisplayContainer.defaultProps = {
-    value: 0,
-}
+// DisplayContainer.defaultProps = {
+//     value: 0,
+// }
 
-export default DisplayContainer;
+const mapStateToProps = (state) => ({
+    value: state.calButton.currentValue,
+})
+
+export default connect(mapStateToProps, null)(DisplayContainer);
