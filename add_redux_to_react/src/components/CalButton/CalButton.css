@@ -1,0 +1,13 @@
+.calButton {
+    display: inline-block;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid blue;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}
+.calButton:hover {
+    background-color: blue;
+    color: white;
+}
