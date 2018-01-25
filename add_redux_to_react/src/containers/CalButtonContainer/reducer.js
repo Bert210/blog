@@ -1,11 +1,26 @@
+import math from 'mathjs';
+
 import {
     BUTTON_PUSHED,
 } from './constants';
 
 const initialState = {
-    prevValue: 0,
-    operator: null,
     currentValue: 0,
+}
+
+
+const handleAll = (val, state) => {
+    state.currentValue += val;
+    return state;
+}
+
+const handleEq = (state) => {
+    try {
+        state.currentValue = math.eval(state.currentValue);
+    } catch (e) {
+        console.log(e);
+    }
+    return state;
 }
 
 const calButtonContainerReducer = (state = initialState, action) => {
@@ -15,38 +30,14 @@ const calButtonContainerReducer = (state = initialState, action) => {
                 ...state
             }
 
-            switch(action.value){
-                case '0':
-                case '1':
-                case '2':
-                case '3':
-                case '4':
-                case '5':
-                case '6':
-                case '7':
-                case '8':
-                case '9':
-                case '.':
-                    
-                    if(newState.currentValue === 0 || newState.currentValue === "0"){
-                        newState.currentValue = "";
-                    }
-                    newState.currentValue += action.value;
-                    break;
-                case 'C':
-                    newState.prevValue = 0;
-                    newState.currentValue = 0;
-                    break;
-                case '*':
-                    if(newState.prevValue === 0){
-                        newState.prevValue = newState.currentValue;
-                        newState.currentValue = 0;                        
-                    }else{
-                        newState.currentValue = newState.prevValue * newState.currentValue;
-                    }
-                default:
-                    break;
+            if(action.value === '='){
+                newState = handleEq(newState);
+            }else if(action.value === 'C'){
+                newState.currentValue = 0;
+            }else{
+                newState = handleAll(action.value, newState);
             }
+
             return  newState;
         default:
             return state;
